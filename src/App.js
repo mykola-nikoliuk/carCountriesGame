@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import styled from 'styled-components';
 import './App.css';
+import { Quiz } from './components/Quiz';
+import { Game } from './game';
+import { useMemo, useState } from 'react';
 
 function App() {
+  const [level, setLevel] = useState(1);
+  const { car, answers, checkAnswer } = useMemo(() => {
+    return Game.start(() => setLevel(level + 1));
+  }, [level])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledPage>
+      <Quiz answers={answers} brand={car} onAnswer={checkAnswer} />
+    </StyledPage>
   );
 }
 
 export default App;
+
+export const StyledPage = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+`;
