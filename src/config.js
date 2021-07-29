@@ -245,7 +245,7 @@ export const brands = {
     country: countries.germany,
   },
   mg: {
-    name: 'МЖ',
+    name: 'Эм Джи',
     image: mg,
     country: countries.uk,
   },

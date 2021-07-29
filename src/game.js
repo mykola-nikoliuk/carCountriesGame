@@ -5,7 +5,8 @@ const ANSWERS_COUNT = 6;
 
 export function speak(text) {
   const speech = new SpeechSynthesisUtterance();
-  speech.lang = 'ru';
+  speech.lang = 'ru-RU';
+  speech.voice = window.speechSynthesis.getVoices().filter(voice => voice.lang === 'ru-RU')[0];
   speech.text = text;
   window.speechSynthesis.speak(speech);
 }
